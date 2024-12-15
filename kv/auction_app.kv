@@ -1,0 +1,144 @@
+<MainPage>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+        canvas.before:
+            Color:
+                rgba: 0.2, 0.6, 0.8, 1  # Цвет фона
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: 'Auctions'
+            font_size: 32
+            color: 1, 1, 1, 1
+            size_hint_y: None
+            height: 50
+            halign: 'center'
+            valign: 'middle'
+            text_size: self.size
+
+        ScrollView:
+            GridLayout:
+                id: auction_list
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+
+        Button:
+            text: 'Create Auction'
+            size_hint_y: None
+            height: 50
+            background_color: 0.3, 0.8, 0.3, 1
+            color: 1, 1, 1, 1
+            on_press: root.go_to_create_auction()
+
+<CreateAuctionPage>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+        canvas.before:
+            Color:
+                rgba: 0.2, 0.6, 0.8, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: 'Create Auction'
+            font_size: 32
+            color: 1, 1, 1, 1
+            size_hint_y: None
+            height: 50
+
+        TextInput:
+            id: title_input
+            hint_text: 'Auction Title'
+            size_hint_y: None
+            height: 40
+
+        TextInput:
+            id: description_input
+            hint_text: 'Auction Description'
+            size_hint_y: None
+            height: 80
+
+        TextInput:
+            id: starting_bid_input
+            hint_text: 'Starting Bid'
+            size_hint_y: None
+            height: 40
+
+        Button:
+            text: 'Create Auction'
+            size_hint_y: None
+            height: 50
+            background_color: 0.3, 0.8, 0.3, 1
+            color: 1, 1, 1, 1
+            on_press: root.create_auction()
+
+        Button:
+            text: 'Back to Auctions'
+            size_hint_y: None
+            height: 50
+            background_color: 0.8, 0.3, 0.3, 1
+            color: 1, 1, 1, 1
+            on_press: app.root.current = 'main'
+
+<AuctionInfoPage>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+        canvas.before:
+            Color:
+                rgba: 0.2, 0.6, 0.8, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            id: title_label
+            font_size: 28
+            color: 1, 1, 1, 1
+
+        Label:
+            id: description_label
+            font_size: 20
+            color: 1, 1, 1, 1
+
+        Label:
+            id: starting_bid_label
+            font_size: 20
+            color: 1, 1, 1, 1
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: 40
+            
+            TextInput:
+                id: bid_input
+                hint_text: 'Your Bid'
+                size_hint_x: 0.7
+
+            Button:
+                text: 'Place Bid'
+                size_hint_x: 0.3
+                on_press: root.place_bid()
+
+        Label:
+            id: result_label
+            font_size: 20
+            color: (1, 0.8, 0.2, 1) # Цвет для сообщения о результате
+
+        Button:
+            text: 'Back to Auctions'
+            size_hint_y: None
+            height: 50
+            background_color: (0.8, 0.3, 0.3, 1)
+            color: (1, 1, 1, 1)
+            on_press: root.go_back()
